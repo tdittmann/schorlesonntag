@@ -12,7 +12,7 @@ const time = ref({
   seconds: 0,
 })
 
-let interval
+let interval: number
 
 const updateCountdown = () => {
   const now = new Date().getTime()
