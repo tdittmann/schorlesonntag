@@ -157,6 +157,7 @@ onMounted(() => {
   z-index: 1;
   background-color: transparent;
   color: #000 !important;
+  width: auto;
 }
 
 .accordion-enter-active,

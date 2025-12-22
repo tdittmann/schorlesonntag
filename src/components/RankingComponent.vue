@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { type Drink, type Participant, ParticipantService } from '@/services/ParticipantService.ts'
 import { v4 as uuidv4 } from 'uuid'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 
-const selectedYear = ref<number>(new Date().getFullYear())
+type Props = {
+  selectedYear: number
+}
+const props = defineProps<Props>()
 
 type RankingType = 'Gesamt' | 'Team' | 'Männer' | 'Frauen'
 const currentRankingType = ref<RankingType>('Gesamt')
@@ -16,7 +19,7 @@ const participantsLoading = ref<boolean>(false)
 const participants = ref<Participant[]>([])
 const loadParticipants = () => {
   participantsLoading.value = true
-  ParticipantService.loadParticipants(selectedYear.value).then((value) => {
+  ParticipantService.loadParticipants(props.selectedYear).then((value) => {
     participants.value = value
     participantsLoading.value = false
   })
@@ -103,6 +106,11 @@ const sortByDrinksAndName = (a: Ranking, b: Ranking) => {
   }
   return a.name.localeCompare(b.name)
 }
+
+watch(
+  () => props.selectedYear,
+  () => loadParticipants(),
+)
 
 onMounted(() => {
   loadParticipants()
@@ -213,6 +221,7 @@ onMounted(() => {
   z-index: 1;
   background-color: transparent;
   color: #000 !important;
+  width: auto;
 }
 
 .ranking-types {

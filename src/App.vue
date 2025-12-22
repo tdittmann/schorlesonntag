@@ -2,16 +2,21 @@
 import ProfileComponent from '@/components/ProfileComponent.vue'
 import RankingComponent from '@/components/RankingComponent.vue'
 import AddNewSchorleComponent from '@/components/AddNewSchorleComponent.vue'
+import { ref } from 'vue'
 
-/**
- * TODO:
- * - History of last years
- */
+const selectedYear = ref<number>(2025)
+const yearsToSelect = [2024, 2025]
 </script>
 
 <template>
   <!-- Header -->
   <header id="header">
+    <select class="form-control history-selector" name="selectedYear" v-model="selectedYear">
+      <option v-for="yearToSelect in yearsToSelect" :key="yearToSelect" :value="yearToSelect">
+        {{ yearToSelect }}
+      </option>
+    </select>
+
     <div class="logo">
       <a href="/">
         Schorlesonntag
@@ -24,7 +29,7 @@ import AddNewSchorleComponent from '@/components/AddNewSchorleComponent.vue'
   </header>
 
   <ProfileComponent />
-  <RankingComponent />
+  <RankingComponent :selectedYear="selectedYear" />
   <div class="new-schorle-button">
     <AddNewSchorleComponent />
   </div>
@@ -36,6 +41,17 @@ import AddNewSchorleComponent from '@/components/AddNewSchorleComponent.vue'
 </template>
 
 <style scoped>
+.history-selector {
+  text-align: center;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+
 .new-schorle-button {
   position: fixed;
   bottom: 64px;
