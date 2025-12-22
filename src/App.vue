@@ -3,6 +3,7 @@ import ProfileComponent from '@/components/ProfileComponent.vue'
 import RankingComponent from '@/components/RankingComponent.vue'
 import AddNewSchorleComponent from '@/components/AddNewSchorleComponent.vue'
 import { ref } from 'vue'
+import CountdownComponent from '@/components/CountdownComponent.vue'
 
 const selectedYear = ref<number>(2025)
 const yearsToSelect = [2024, 2025]
@@ -30,10 +31,12 @@ const isSchorleTime = new Date().toDateString() === schorleTime.toDateString()
     </div>
   </header>
 
+  <CountdownComponent v-if="!isSchorleTime" :date="schorleTime" />
+
   <ProfileComponent />
   <RankingComponent :selectedYear="selectedYear" />
   <div class="new-schorle-button">
-    <AddNewSchorleComponent :isEnabled="isSchorleTime" />
+    <AddNewSchorleComponent v-if="isSchorleTime" />
   </div>
 
   <!-- Footer -->

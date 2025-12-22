@@ -3,11 +3,6 @@ import { ref } from 'vue'
 import { DrinkService } from '@/services/DrinkService.ts'
 import { useToast } from 'vue-toast-notification'
 
-type Props = {
-  isEnabled: boolean
-}
-const props = defineProps<Props>()
-
 const toast = useToast()
 
 const isOpen = ref(false)
@@ -68,11 +63,7 @@ const onSave = async () => {
         </div>
       </fieldset>
 
-      <button
-        style="margin-top: 1rem"
-        :disabled="schorleTyp === undefined || !props.isEnabled"
-        @click="onSave()"
-      >
+      <button style="margin-top: 1rem" :disabled="schorleTyp === undefined" @click="onSave()">
         Speichern
       </button>
     </div>
