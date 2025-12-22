@@ -1,4 +1,4 @@
-name: build
+name: deployment
 on:
   push:
     branches: [ main ]
@@ -26,6 +26,11 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
+      - name: Create environment file
+        run: |
+          echo "Creating environment file..."
+          echo "${{ secrets.ENVIRONMENT_VARIABLES }}" | base64 -d >> .env
 
       - name: Run npm install
         run: npm i
