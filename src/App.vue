@@ -6,6 +6,8 @@ import { ref } from 'vue'
 
 const selectedYear = ref<number>(2025)
 const yearsToSelect = [2024, 2025]
+const schorleTime = new Date(2026, 7, 19)
+const isSchorleTime = new Date().toDateString() === schorleTime.toDateString()
 </script>
 
 <template>
@@ -31,7 +33,7 @@ const yearsToSelect = [2024, 2025]
   <ProfileComponent />
   <RankingComponent :selectedYear="selectedYear" />
   <div class="new-schorle-button">
-    <AddNewSchorleComponent />
+    <AddNewSchorleComponent :isEnabled="isSchorleTime" />
   </div>
 
   <!-- Footer -->
