@@ -1,4 +1,4 @@
-# Schorlesonntag
+# 🍇 Schorlesonntag
 
 Web-Application for the traditional Schorlesonntag.
 
