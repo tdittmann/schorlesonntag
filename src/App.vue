@@ -24,7 +24,7 @@ const isSchorleTime = new Date().toDateString() === schorleTime.toDateString()
       <a href="/">
         Schorlesonntag
         <span>
-          Nicht jedermann auf die Welt, der findet unser Dahenfeld, <br />
+          Nicht jedermann auf der Welt, der findet unser Dahenfeld, <br />
           doch Trinker mit geübter Nase zieht es magnetisch her zum Glase!
         </span>
       </a>
