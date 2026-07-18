@@ -8,6 +8,7 @@ const props = defineProps<Props>()
 
 const time = ref({
   days: 0,
+  hours: 0,
   minutes: 0,
   seconds: 0,
 })
@@ -21,7 +22,8 @@ const updateCountdown = () => {
 
   const totalSeconds = Math.floor(diff / 1000)
   time.value.days = Math.floor(totalSeconds / 86400)
-  time.value.minutes = Math.floor((totalSeconds % 86400) / 60)
+  time.value.hours = Math.floor((totalSeconds % 86400) / 3600)
+  time.value.minutes = Math.floor((totalSeconds % 3600) / 60)
   time.value.seconds = totalSeconds % 60
 }
 
@@ -40,9 +42,13 @@ onUnmounted(() => {
     <div class="inner">
       <section id="one" class="wrapper style2">
         <div class="countdown">
-          <div class="unit">
+          <div class="unit" v-if="time.days > 0">
             <span class="value">{{ time.days }}</span>
             <span class="label">Tage</span>
+          </div>
+          <div class="unit">
+            <span class="value">{{ time.hours }}</span>
+            <span class="label">Stunden</span>
           </div>
           <div class="unit">
             <span class="value">{{ time.minutes }}</span>
