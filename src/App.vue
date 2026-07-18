@@ -7,7 +7,7 @@ import CountdownComponent from '@/components/CountdownComponent.vue'
 
 const selectedYear = ref<number>(2026)
 const yearsToSelect = [2024, 2025, 2026]
-const schorleTime = new Date(2026, 7, 19)
+const schorleTime = new Date(2026, 6, 19)
 const isSchorleTime = new Date().toDateString() === schorleTime.toDateString()
 </script>
 
