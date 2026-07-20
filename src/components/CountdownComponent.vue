@@ -38,7 +38,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="main">
+  <section id="main" v-if="time.minutes > 0 && time.seconds > 0">
     <div class="inner">
       <section id="one" class="wrapper style2">
         <div class="countdown">
